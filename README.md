@@ -1,8 +1,10 @@
+
 <p align="center">
   <img width="1213" alt="Screenshot 2025-01-22 at 4 22 09 PM" src="https://github.com/user-attachments/assets/eb2dda77-9f0d-4579-98af-1b8a5dd43ce1" alt="PantryPal README Splash Image" />
 </p>
 
-
+# Credits
+- This repository was forked from InfiniteRed's Ignite boilerplate. Please view their work, they're amazing. https://github.com/infinitered/ignite?tab=readme-ov-file
 # PantryPal
 
 **PantryPal** is a mobile application that improves food access for low-income families by addressing long wait times, inventory challenges, and inefficient reservation processes at food pantries.
