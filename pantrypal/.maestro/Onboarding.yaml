@@ -1,0 +1,39 @@
+appId: http://localhost:8082 # Web app URL
+---
+- launchApp:
+    webUrl: http://localhost:8082
+
+# Test Create Group Flow
+- tapOn: "Create Group"
+- assertVisible: "Enter Group Details"
+- tapOn: "Group Name"
+- inputText: "Smith Family"
+- tapOn: "Location"
+- inputText: "San Francisco"
+
+# Test Personal Details
+- tapOn: "First Name"
+- inputText: "John"
+- tapOn: "Last Name"
+- inputText: "Smith"
+- tapOn: "Age"
+- inputText: "35"
+
+# Test Family Size
+- tapOn: "Adults"
+- inputText: "2"
+- tapOn: "Teenagers"
+- inputText: "1"
+- tapOn: "Children"
+- inputText: "1"
+- tapOn: "Infants"
+- inputText: "0"
+
+# Test Dietary Preferences
+- tapOn: "Dairy-free"
+- tapOn: "No Pork"
+
+# Submit and Verify
+- tapOn: "Complete Setup"
+- assertVisible: "Welcome, John Smith!"
+- assertVisible: "Smith Family" 

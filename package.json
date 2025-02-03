@@ -1,0 +1,164 @@
+{
+  "name": "ignite-cli",
+  "version": "10.1.2",
+  "description": "Infinite Red's hottest boilerplate for React Native.",
+  "bin": {
+    "ignite": "bin/ignite",
+    "ignite-cli": "bin/ignite"
+  },
+  "preferGlobal": true,
+  "license": "MIT",
+  "repository": "infinitered/ignite",
+  "homepage": "https://github.com/infinitered/ignite",
+  "files": [
+    "boilerplate",
+    "build",
+    "bin",
+    "README.md",
+    "template.config.js"
+  ],
+  "author": {
+    "name": "Infinite Red",
+    "email": "npm@infinite.red",
+    "url": "https://github.com/infinitered/ignite"
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit",
+    "build": "yarn clean && yarn compile && yarn build:assets",
+    "build:assets": "cp ./boilerplate/.gitignore ./boilerplate/.gitignore.template && cp ./src/assets/*.txt ./build/assets/",
+    "build:watch": "yarn build && yarn compile --watch",
+    "format": "prettier '**/*{.js,.ts,.tsx,.json,.md}'",
+    "format:write": "yarn format --write",
+    "format:check": "yarn format --check",
+    "lint": "eslint 'src/**' 'test/**'",
+    "test": "TS_JEST_DISABLE_VER_CHECKER=true jest",
+    "watch": "jest --watch",
+    "watch:debug": "yarn watch --runInBand --verbose",
+    "coverage": "jest --coverage",
+    "ci:publish": "yarn build && yarn semantic-release && yarn clean",
+    "semantic-release": "semantic-release",
+    "clean": "rm -drf ./build ./boilerplate/.gitignore.template ./boilerplate/node_modules ./boilerplate/ios/build/ ./boilerplate/ios/Pods/ ./boilerplate/android/app/build ./boilerplate/ios/.xcode.env.local",
+    "ignite-cli:dev": "node bin/ignite",
+    "ignite-cli:prod": "wrap () { node bin/ignite \"$@\" --compiled-build | cat; }; wrap"
+  },
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
+  "dependencies": {
+    "deepmerge-json": "^1.1.0",
+    "gluegun": "5.1.6",
+    "sharp": "0.32.6",
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "16.6.1",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-n": "^17.10.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.1.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "prettier": "^3.3.3",
+    "semantic-release": "^17.4.2",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.2.0",
+    "typescript": "~5.3.3"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "standard",
+      "prettier"
+    ],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "globals": {
+      "__DEV__": false,
+      "jasmine": false,
+      "beforeAll": false,
+      "afterAll": false,
+      "beforeEach": false,
+      "afterEach": false,
+      "test": false,
+      "expect": false,
+      "describe": false,
+      "jest": false,
+      "it": false
+    },
+    "rules": {
+      "@typescript-eslint/ban-ts-ignore": 0,
+      "@typescript-eslint/ban-ts-comment": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-module-boundary-types": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/member-delimiter-style": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-var-requires": 0,
+      "@typescript-eslint/no-use-before-define": 0,
+      "comma-dangle": 0,
+      "multiline-ternary": 0,
+      "no-undef": 0,
+      "no-unused-vars": 0,
+      "no-use-before-define": "off",
+      "quotes": 0,
+      "space-before-function-paren": 0
+    },
+    "ignorePatterns": [
+      "**/*.snap",
+      "**/*.txt",
+      "bin/ignite"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all",
+    "quoteProps": "consistent"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": "package.json",
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/boilerplate/"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ]
+  }
+}
